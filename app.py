@@ -21,7 +21,7 @@ def remove_background():
     file = flask.request.files['file']
 
     if file.mimetype != 'image/jpeg' and file.mimetype != 'image/png':
-        return "Invalid file type. Only PNG files are allowed.", 400
+        return "Invalid file type. Only JPEG and PNG files are allowed.", 400
     
     return flask.send_file(io.BytesIO(remove(file.stream.read(), force_return_bytes=True)), download_name='output.png', mimetype='image/png')
 
@@ -36,7 +36,7 @@ def detect_objects():
     if file.mimetype != 'image/jpeg' and file.mimetype != 'image/png':
         return "Invalid file type. Only PNG files are allowed.", 400
     
-    detect_results = model(Image.open(io.BytesIO(file.stream.read())), device="0") # GPU: "cuda:0"
+    detect_results = model(Image.open(io.BytesIO(file.stream.read())), device="cpu") # GPU: "cuda:0"
 
     return detect_results[0].to_json(), 200, {'Content-Type': 'application/json'}
 
