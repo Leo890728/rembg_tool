@@ -2,6 +2,9 @@
 
 使用 Flask 開發的網頁小工具，使用 AI 模型，提供圖片自動去背與物件偵測功能。
 
+![rembg_demo](https://github.com/user-attachments/assets/e212a903-624a-4ca8-a56b-7db2f7d21bce)
+
+
 ## 主要功能
 
 - **圖片去背 (Background Removal)**: 使用 `rembg` (U^2-Net) 自動移除圖片背景。
